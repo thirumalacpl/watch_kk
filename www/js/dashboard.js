@@ -43,10 +43,12 @@ E_Mail=regionArray_array.E_Mail;
 for(a=0;a<gcm_reg_id_array.length;a++){
   gcm_id = gcm_reg_id_array[a];
   gg = gcm_id.user_id;
+ gcm_regidexi = gcm_id.gcm_regid;
   if(user_id == gg ){
   //alert(gcm_id.username+'aaa ganesan.k');
  gcm_idpass = gcm_reg_id_array[a];
  gcm_idpass = gcm_idpass.user_id;
+  //alert(gcm_regidexi);
 }
 // alert(new_count.new_verification_count+'new_verification_count');
 //$("#new_veri_count").html(gcm_id.username);
@@ -442,11 +444,11 @@ $(document).off('click', '#dashlogout').on('click', '#dashlogout', function() {
 //alert(username);
 //alert(user_id);
 var gcm_idpass=gcm_idpass;
-
+var gcm_regidexi=gcm_regidexi;
 //alert(user_id);
 //alert(gcm_idpass);
-
-if(user_id != gcm_idpass){
+alert(gcm_idpass);
+alert(gcm_regidexi);
   //alert('inside ganesan');
 if (typeof PushNotification != 'undefined'){
 
@@ -482,7 +484,7 @@ var app = {
         console.log("registration event");
         var gcm_regid = data.registrationId;
         //alert(gcm_regid+'dashboard js');
-
+if(gcm_regidexi != gcm_regid ){
  $.ajax({url: 'http://staging.eimpressive.com/slim-four/gcm_id.php?gcm_regid='+gcm_regid+"&E_Mail="+E_Mail+"&username="+username+"&region="+region+"&user_id="+user_id,
   data:$('#new').serialize(),
   type: 'post',                   
@@ -517,7 +519,7 @@ console.log(error);
 alert('Network error has occurred please try again!');
 }
 }); 
-
+}
     });
         push.on('error', function(e) {
             console.log("push error");
@@ -527,7 +529,7 @@ alert('Network error has occurred please try again!');
 
     app.initialize();
 }
-}
+
 /*$(document).on("pagebeforeshow","#dashboard",function(){
 
   alert("pagebeforeshow event fired - pagetwo is about to be shown");
